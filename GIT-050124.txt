@@ -1,0 +1,313 @@
+==============================================================================================
+1. Establish a remote "repository" with a meaningful project name. Generate DEV/QA/UAT/PROD branches within the remote repository. Clone the repository locally. Create a local branch named after you, add files, commit them locally, and then push that branch to the remote repository. Initiate a Pull Request (PR) and subsequently merge your branch into the Dev branch.
+===============================================================================================
+Initialized empty Git repository in /root/repositories/.git/
+root@DESKTOP-0ANCI6F:repositories# ls -lrta
+total 0
+drwx------ 1 root root 512 Jan  4 13:34 ..
+drwxr-xr-x 1 root root 512 Jan  4 13:35 .
+drwxr-xr-x 1 root root 512 Jan  4 13:35 .git
+
+root@DESKTOP-0ANCI6F:repositories# git remote add origin git@github.com:Armanshaikh9129/AssignmentHub.git
+root@DESKTOP-0ANCI6F:repositories# ls
+root@DESKTOP-0ANCI6F:repositories# ls -lrta
+total 0
+drwx------ 1 root root 512 Jan  4 13:34 ..
+drwxr-xr-x 1 root root 512 Jan  4 13:35 .
+drwxr-xr-x 1 root root 512 Jan  4 13:39 .git
+root@DESKTOP-0ANCI6F:repositories# git remote -v
+origin  git@github.com:Armanshaikh9129/AssignmentHub.git (fetch)
+origin  git@github.com:Armanshaikh9129/AssignmentHub.git (push)
+
+root@DESKTOP-0ANCI6F:repositories# git pull origin DEV
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 603 bytes | 23.00 KiB/s, done.
+From github.com:Armanshaikh9129/AssignmentHub
+ * branch            DEV        -> FETCH_HEAD
+ * [new branch]      DEV        -> origin/DEV
+root@DESKTOP-0ANCI6F:repositories# git pull origin QA
+From github.com:Armanshaikh9129/AssignmentHub
+ * branch            QA         -> FETCH_HEAD
+ * [new branch]      QA         -> origin/QA
+Already up to date.
+root@DESKTOP-0ANCI6F:repositories# git pull origin UAT
+From github.com:Armanshaikh9129/AssignmentHub
+ * branch            UAT        -> FETCH_HEAD
+ * [new branch]      UAT        -> origin/UAT
+Already up to date.
+root@DESKTOP-0ANCI6F:repositories# git pull origin PROD
+From github.com:Armanshaikh9129/AssignmentHub
+ * branch            PROD       -> FETCH_HEAD
+ * [new branch]      PROD       -> origin/PROD
+Already up to date.
+
+root@DESKTOP-0ANCI6F:repositories# git branch arman
+root@DESKTOP-0ANCI6F:repositories# git branch -l
+  DEV
+* PROD
+  QA
+  UAT
+  arman
+  master
+================================================================================================ 
+  . Set up a remote "repository" with a project name that holds significance. In the master branch of the remote repository, create a file named demo.txt. After creating the file, clone the repository locally. Within the local repository, create three branches: feature/login, feature/mainline, and release. Add a login.txt file to the feature/login branch and push the branch to the remote repository. Create a PR, approve it, and then merge the feature/login branch into the remote master branch
+================================================================================================ 
+
+root@DESKTOP-0ANCI6F:repositories# git push origin arman
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'arman' on GitHub by visiting:
+remote:      https://github.com/Armanshaikh9129/AssignmentHub/pull/new/arman
+remote:
+To github.com:Armanshaikh9129/AssignmentHub.git
+ * [new branch]      arman -> arman
+ 
+ nothing added to commit but untracked files present (use "git add" to track)
+root@DESKTOP-0ANCI6F:repositories# git add .
+root@DESKTOP-0ANCI6F:repositories# git commit -m "5 files are added"
+[arman eac0aca] 5 files are added
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 workfile1.txt
+ create mode 100644 workfile2.txt
+ create mode 100644 workfile3.txt
+ create mode 100644 workfile4.txt
+ create mode 100644 workfile5.txt
+ 
+ root@DESKTOP-0ANCI6F:repositories# git push -u origin arman
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 292 bytes | 36.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:Armanshaikh9129/AssignmentHub.git
+   660817d..eac0aca  arman -> arman
+branch 'arman' set up to track 'origin/arman'
+
+root@DESKTOP-0ANCI6F:~/repositories (DEV)# git merge arman
+Updating 660817d..eac0aca
+Fast-forward
+ workfile1.txt | 0
+ workfile2.txt | 0
+ workfile3.txt | 0
+ workfile4.txt | 0
+ workfile5.txt | 0
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 workfile1.txt
+ create mode 100644 workfile2.txt
+ create mode 100644 workfile3.txt
+ create mode 100644 workfile4.txt
+ create mode 100644 workfile5.txt
+ 
+================================================================================================ 
+ 3. Populate the local repository's feature/mainline branch with files and push that branch to the remote repository. Add additional files to the feature/mainline remote branch through the UI. Fetch the latest changes on the local feature/mainline using the Fetch and Pull commands.
+================================================================================================ 
+
+ 
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git remote add origin git@github.com:Armanshaikh9129/DataDynamo.git
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git remote -v
+origin  git@github.com:Armanshaikh9129/DataDynamo.git (fetch)
+origin  git@github.com:Armanshaikh9129/DataDynamo.git (push)
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git pull origin master
+fatal: couldn't find remote ref master
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git pull origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 618 bytes | 26.00 KiB/s, done.
+From github.com:Armanshaikh9129/DataDynamo
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+ 
+ root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git pull origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 618 bytes | 26.00 KiB/s, done.
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# ls
+demo.txt  login.txt
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/login)# git branch -l
+* feature/login
+  feature/mainline
+  master
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/login)# git checkout master
+Switched to branch 'master'
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# ls
+demo.txt  login.txt
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git push -u origin feature/login
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'feature/login' on GitHub by visiting:
+remote:      https://github.com/Armanshaikh9129/DataDynamo/pull/new/feature/login
+remote:
+To github.com:Armanshaikh9129/DataDynamo.git
+ * [new branch]      feature/login -> feature/login
+branch 'feature/login' set up to track 'origin/feature/login'.
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# git push -u origin feature/mainline
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'feature/mainline' on GitHub by visiting:
+remote:      https://github.com/Armanshaikh9129/DataDynamo/pull/new/feature/mainline
+remote:
+To github.com:Armanshaikh9129/DataDynamo.git
+ * [new branch]      feature/mainline -> feature/mainline
+branch 'feature/mainline' set up to track 'origin/feature/mainline'.
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/login)# git merge master
+Updating 6a32bbe..ac74ee7
+Fast-forward
+ login.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 login.txt
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/login)# ll
+total 0
+drwxr-xr-x 1 root root 512 Jan  5 15:04 ./
+drwx------ 1 root root 512 Jan  5 14:42 ../
+drwxr-xr-x 1 root root 512 Jan  5 15:00 .git/
+-rw-r--r-- 1 root root  31 Jan  5 13:08 demo.txt
+-rw-r--r-- 1 root root   0 Jan  5 13:11 login.txt
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/login)# git checkout master
+Switched to branch 'master'
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (master)# ll
+total 0
+drwxr-xr-x 1 root root 512 Jan  5 15:04 ./
+drwx------ 1 root root 512 Jan  5 14:42 ../
+drwxr-xr-x 1 root root 512 Jan  5 15:04 .git/
+-rw-r--r-- 1 root root  31 Jan  5 13:08 demo.txt
+-rw-r--r-- 1 root root   0 Jan  5 13:11 login.txt
+
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/mainline)# ll
+total 0
+drwxr-xr-x 1 root root 512 Jan  5 15:10 ./
+drwx------ 1 root root 512 Jan  5 14:42 ../
+drwxr-xr-x 1 root root 512 Jan  5 15:07 .git/
+-rw-r--r-- 1 root root   0 Jan  5 15:10 api_documentation.html
+-rw-r--r-- 1 root root   0 Jan  5 15:10 architecture_diagram.png
+-rw-r--r-- 1 root root   0 Jan  5 15:10 budget_spreadsheet.xlsx
+-rw-r--r-- 1 root root   0 Jan  5 15:09 code_review_notes.md
+-rw-r--r-- 1 root root   0 Jan  5 15:09 data_analysis.csv
+-rw-r--r-- 1 root root  31 Jan  5 13:08 demo.txt
+-rw-r--r-- 1 root root   0 Jan  5 13:11 login.txt
+-rw-r--r-- 1 root root   0 Jan  5 15:10 meeting_minutes_2024-01-05.txt
+-rw-r--r-- 1 root root   0 Jan  5 15:09 presentation_final.pptx
+-rw-r--r-- 1 root root   0 Jan  5 15:09 project_plan.txt
+-rw-r--r-- 1 root root   0 Jan  5 15:10 release_notes_v1.2.txt
+-rw-r--r-- 1 root root   0 Jan  5 15:09 requirements_spec.docx
+-rw-r--r-- 1 root root   0 Jan  5 15:10 style_guide.doc
+-rw-r--r-- 1 root root   0 Jan  5 15:10 test_cases_suite.py
+-rw-r--r-- 1 root root   0 Jan  5 15:09 user_guide.pdf
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/mainline)# git add .
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/mainline)# git commit -m "DataAnalysis file are added"
+[feature/mainline cd70c06] DataAnalysis file are added
+ 14 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 api_documentation.html
+ create mode 100644 architecture_diagram.png
+ create mode 100644 budget_spreadsheet.xlsx
+ create mode 100644 code_review_notes.md
+ create mode 100644 data_analysis.csv
+ create mode 100644 login.txt
+ create mode 100644 meeting_minutes_2024-01-05.txt
+ create mode 100644 presentation_final.pptx
+ create mode 100644 project_plan.txt
+ create mode 100644 release_notes_v1.2.txt
+ create mode 100644 requirements_spec.docx
+ create mode 100644 style_guide.doc
+ create mode 100644 test_cases_suite.py
+ create mode 100644 user_guide.pdf
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/mainline)# git push -u origin feature/mainline
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 510 bytes | 85.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:Armanshaikh9129/DataDynamo.git
+   6567ade..cd70c06  feature/mainline -> feature/mainline
+branch 'feature/mainline' set up to track 'origin/feature/mainline'.
+root@DESKTOP-0ANCI6F:~/DataDynamo_local (feature/mainline)# git pull origin feature/mainline
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 7 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (7/7), 1.84 KiB | 36.00 KiB/s, done.
+From github.com:Armanshaikh9129/DataDynamo
+ * branch            feature/mainline -> FETCH_HEAD
+   cd70c06..f78a4d1  feature/mainline -> origin/feature/mainline
+Updating cd70c06..f78a4d1
+Fast-forward
+ backup_plan.txt      | 1 +
+ deployment_script.sh | 1 +
+ error_logs.log       | 1 +
+ 3 files changed, 3 insertions(+)
+ create mode 100644 backup_plan.txt
+ create mode 100644 deployment_script.sh
+ create mode 100644 error_logs.log
+
+================================================================================================ 
+ 4. Establish a remote "repository" for a dashboard application with a meaningful project name. Create the following branches: master, release, hotfix, feature/login, feature/submit, and feature/dashboard. Clone the repository locally. Create a local branch named after you, add files, commit them locally, and then push that branch to the remote repository. Create a PR and merge your branch into the respective branch.
+================================================================================================ 
+ 
+ root@DESKTOP-0ANCI6F:~/dashboard (master)# git remote add origin git@github.com:Armanshaikh9129/DashForge.git
+error: remote origin already exists.
+root@DESKTOP-0ANCI6F:~/dashboard (master)# git remote -v
+origin  git@github.com:Armanshaikh9129/DashForge.git (fetch)
+origin  git@github.com:Armanshaikh9129/DashForge.git (push)
+
+root@DESKTOP-0ANCI6F:~/dashboard (master)# git pull origin main
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (5/5), 1.19 KiB | 37.00 KiB/s, done.
+From github.com:Armanshaikh9129/DashForge
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+ 
+ root@DESKTOP-0ANCI6F:~/dashboard (release)# git checkout release feature/login
+error: pathspec 'feature/login' did not match any file(s) known to git
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git pull origin feature/login
+From github.com:Armanshaikh9129/DashForge
+ * branch            feature/login -> FETCH_HEAD
+ * [new branch]      feature/login -> origin/feature/login
+Already up to date.
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git pull origin feature/submit
+From github.com:Armanshaikh9129/DashForge
+ * branch            feature/submit -> FETCH_HEAD
+ * [new branch]      feature/submit -> origin/feature/submit
+Already up to date.
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git pull origin feature/dashboard
+From github.com:Armanshaikh9129/DashForge
+ * branch            feature/dashboard -> FETCH_HEAD
+ * [new branch]      feature/dashboard -> origin/feature/dashboard
+Already up to date.
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git branch arman
+root@DESKTOP-0ANCI6F:~/dashboard (release)# ls
+unit_tests_suite.py
+root@DESKTOP-0ANCI6F:~/dashboard (release)# touch test1{1..5}.txt
+root@DESKTOP-0ANCI6F:~/dashboard (release)# ls
+test11.txt  test12.txt  test13.txt  test14.txt  test15.txt  unit_tests_suite.py
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git add .
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git commit -m "files added for testing purpose"
+[release 4223a88] files added for testing purpose
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test11.txt
+ create mode 100644 test12.txt
+ create mode 100644 test13.txt
+ create mode 100644 test14.txt
+ create mode 100644 test15.txt
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git pull origin arman
+fatal: couldn't find remote ref arman
+root@DESKTOP-0ANCI6F:~/dashboard (release)# git push origin arman
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'arman' on GitHub by visiting:
+remote:      https://github.com/Armanshaikh9129/DashForge/pull/new/arman
+remote:
+To github.com:Armanshaikh9129/DashForge.git
+ * [new branch]      arman -> arman
