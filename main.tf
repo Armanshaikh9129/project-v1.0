@@ -1,0 +1,54 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.33.0"
+    }
+  }
+}
+
+ provider "aws" {
+  region = var.aws_region  
+}
+
+ resource "aws_instance" "AWS" {
+  ami           = var.instance_ami 
+  instance_type = var.instance_type
+  
+  tags = {
+    Name = "AWS-01"
+  }
+}
+
+ resource "aws_key_pair" "user" {
+  key_name = var.key_pair_name
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCO+XmwAO2k5h8zc/AXuy6/Xe4GHfSpwjttmB/N+1rrho83lUt69oHHSMDgRJbW1lRQ340LX9WpMr6pRPin/2t163rjyRjCfZzW5zETNI1wupfjvxIw1yhg+zLGCnVuWPBpNFaupDGVMmQBmUAnU2vNZsiv22m41dw15mB95fwE/w8k3or+VNhDJ6nrniMxJh0eMOULrjANrjomu7v8772gk8LjuOUTXJ897FeIvOPYaEdjdrA8cLxXPry2ynuuw7AXsRqh+kXb3P28kC/p0U/g3Ljz3EMD3Huo6ibF4xq74MlFnJMsNAEoNdt0bkMHRDyU0O2nzEK7sVFCKabboHAIKLMCv2xG7khMM7RIH44kt81+c7AG0YoOQ6HgjOZ5Bz/qYl/8yLqek/ZXAhSi8aoHfHBAFekihEGWZdGouBGDcvH+XcVPgNbGb3xeQX4Q2MFM2u889PRZYNAg35WEHYwpAZjcg0eLGCNPl+VFmUar7+zZU+nSWy1YvXCy8BXcQy0= root@DESKTOP-0ANCI6F"
+}
+
+ 
+resource "aws_security_group" "example" {
+  name        = var.security_group_name
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+ 
+  resource "aws_vpc_security_group_egress_rule" "example" {
+  security_group_id = "sg-0684345a3b8385e06"
+
+  cidr_ipv4   = "10.0.0.0/8"
+  from_port   = 80
+  ip_protocol = "tcp"
+  to_port     = 80
+}
