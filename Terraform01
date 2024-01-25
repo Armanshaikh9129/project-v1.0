@@ -1,3 +1,7 @@
+###########
+# main.tf
+###########
+
 terraform {
   required_providers {
     aws = {
@@ -8,12 +12,12 @@ terraform {
 }
 
  provider "aws" {
-  region = "ap-south-1"  
+  region = var.aws_region  
 }
 
  resource "aws_instance" "AWS" {
-  ami           = "ami-04708942c263d8190"  
-  instance_type = "t2.micro"
+  ami           = var.instance_ami 
+  instance_type = var.instance_type
   
   tags = {
     Name = "AWS-01"
@@ -21,13 +25,13 @@ terraform {
 }
 
  resource "aws_key_pair" "user" {
-  key_name = "arman_key"
+  key_name = var.key_pair_name
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCO+XmwAO2k5h8zc/AXuy6/Xe4GHfSpwjttmB/N+1rrho83lUt69oHHSMDgRJbW1lRQ340LX9WpMr6pRPin/2t163rjyRjCfZzW5zETNI1wupfjvxIw1yhg+zLGCnVuWPBpNFaupDGVMmQBmUAnU2vNZsiv22m41dw15mB95fwE/w8k3or+VNhDJ6nrniMxJh0eMOULrjANrjomu7v8772gk8LjuOUTXJ897FeIvOPYaEdjdrA8cLxXPry2ynuuw7AXsRqh+kXb3P28kC/p0U/g3Ljz3EMD3Huo6ibF4xq74MlFnJMsNAEoNdt0bkMHRDyU0O2nzEK7sVFCKabboHAIKLMCv2xG7khMM7RIH44kt81+c7AG0YoOQ6HgjOZ5Bz/qYl/8yLqek/ZXAhSi8aoHfHBAFekihEGWZdGouBGDcvH+XcVPgNbGb3xeQX4Q2MFM2u889PRZYNAg35WEHYwpAZjcg0eLGCNPl+VFmUar7+zZU+nSWy1YvXCy8BXcQy0= root@DESKTOP-0ANCI6F"
 }
 
  
 resource "aws_security_group" "example" {
-  name        = "Sec-grp"
+  name        = var.security_group_name
 
   ingress {
     from_port   = 80
@@ -52,82 +56,44 @@ resource "aws_security_group" "example" {
   ip_protocol = "tcp"
   to_port     = 80
 }
+#############
+# variables.tf
+#############
+# variables.tf
 
-root@DESKTOP-0ANCI6F:/mnt/d/VISUAL_STUDIO/terraform# terraform apply
-aws_security_group.example: Refreshing state... [id=sg-004a137174f6468bc]
-aws_instance.AWS: Refreshing state... [id=i-04c6249d14b2e05ac]
-aws_key_pair.user: Refreshing state... [id=arman_key]
-aws_vpc_security_group_egress_rule.example: Refreshing state... [id=sgr-0bd0ed6dcd8c315eb]
+variable "aws_region" {
+  type        = string 
+}
 
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
-following symbols:
-  + create
+variable "instance_ami" {
+  type        = string
+}
 
-Terraform will perform the following actions:
+variable "instance_type" {
+  type        = string
+}
 
-  # aws_instance.AWS will be created
-  + resource "aws_instance" "AWS" {
-      + ami                                  = "ami-04708942c263d8190"
-      + arn                                  = (known after apply)
-      + associate_public_ip_address          = (known after apply)
-      + availability_zone                    = (known after apply)
-      + cpu_core_count                       = (known after apply)
-      + cpu_threads_per_core                 = (known after apply)
-      + disable_api_stop                     = (known after apply)
-      + disable_api_termination              = (known after apply)
-      + ebs_optimized                        = (known after apply)
-      + get_password_data                    = false
-      + host_id                              = (known after apply)
-      + host_resource_group_arn              = (known after apply)
-      + iam_instance_profile                 = (known after apply)
-      + id                                   = (known after apply)
-      + instance_initiated_shutdown_behavior = (known after apply)
-      + instance_lifecycle                   = (known after apply)
-      + instance_state                       = (known after apply)
-      + instance_type                        = "t2.micro"
-      + ipv6_address_count                   = (known after apply)
-      + ipv6_addresses                       = (known after apply)
-      + key_name                             = (known after apply)
-      + monitoring                           = (known after apply)
-      + outpost_arn                          = (known after apply)
-      + password_data                        = (known after apply)
-      + placement_group                      = (known after apply)
-      + placement_partition_number           = (known after apply)
-      + primary_network_interface_id         = (known after apply)
-      + private_dns                          = (known after apply)
-      + private_ip                           = (known after apply)
-      + public_dns                           = (known after apply)
-      + public_ip                            = (known after apply)
-      + secondary_private_ips                = (known after apply)
-      + security_groups                      = (known after apply)
-      + source_dest_check                    = true
-      + spot_instance_request_id             = (known after apply)
-      + subnet_id                            = (known after apply)
-      + tags                                 = {
-          + "Name" = "AWS-01"
-        }
-      + tags_all                             = {
-          + "Name" = "AWS-01"
-        }
-      + tenancy                              = (known after apply)
-      + user_data                            = (known after apply)
-      + user_data_base64                     = (known after apply)
-      + user_data_replace_on_change          = false
-      + vpc_security_group_ids               = (known after apply)
-    }
+variable "key_pair_name" {
+  type        = string
 
-Plan: 1 to add, 0 to change, 0 to destroy.
+}
 
-Do you want to perform these actions?
-  Terraform will perform the actions described above.
-  Only 'yes' will be accepted to approve.
+variable "public_key" {
+  type        = string
+  
+}
+ variable "security_group_name" {
+  type        = string
+  
+}
 
-  Enter a value: yes
+#############
+# custom.tfvars
+##############
 
-aws_instance.AWS: Creating...
-aws_instance.AWS: Still creating... [10s elapsed]
-aws_instance.AWS: Still creating... [20s elapsed]
-aws_instance.AWS: Still creating... [30s elapsed]
-aws_instance.AWS: Creation complete after 32s [id=i-0f87567c51f0ca5ce]
-
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+aws_region       = "ap-south-1"
+instance_ami     = "ami-04708942c263d8190"
+instance_type    = "t2.micro"
+key_pair_name    = "arman_key"
+public_key       = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCO+XmwAO2k5h8zc/AXuy6/Xe4GHfSpwjttmB/N+1rrho83lUt69oHHSMDgRJbW1lRQ340LX9WpMr6pRPin/2t163rjyRjCfZzW5zETNI1wupfjvxIw1yhg+zLGCnVuWPBpNFaupDGVMmQBmUAnU2vNZsiv22m41dw15mB95fwE/w8k3or+VNhDJ6nrniMxJh0eMOULrjANrjomu7v8772gk8LjuOUTXJ897FeIvOPYaEdjdrA8cLxXPry2ynuuw7AXsRqh+kXb3P28kC/p0U/g3Ljz3EMD3Huo6ibF4xq74MlFnJMsNAEoNdt0bkMHRDyU0O2nzEK7sVFCKabboHAIKLMCv2xG7khMM7RIH44kt81+c7AG0YoOQ6HgjOZ5Bz/qYl/8yLqek/ZXAhSi8aoHfHBAFekihEGWZdGouBGDcvH+XcVPgNbGb3xeQX4Q2MFM2u889PRZYNAg35WEHYwpAZjcg0eLGCNPl+VFmUar7+zZU+nSWy1YvXCy8BXcQy0= root@DESKTOP-0ANCI6F"
+security_group_name = "Sec-grp"
