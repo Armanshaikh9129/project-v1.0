@@ -1,0 +1,16 @@
+aws_region       = "ap-south-1"
+cidr             = "10.0.0.0/16"
+resource_name    = "terraform_vpc"
+nat_allocation   = "aws_eip.lb1.id"
+nat_gateway_name = "NAT_gateway"
+route_cidr       = "10.0.0.0/8"
+route_cidr2      = "15.0.0.0/8"
+instance_ami     = "ami-04708942c263d8190"
+instance_type    = "t2.micro"
+key_pair_name    = "arman_key"
+subnets = {
+  cidr-pub1 = "10.0.0.0/24"
+  cidr-pub2 = "10.0.1.0/24"
+  cidr-pvt1 = "10.0.2.0/24"
+  cidr-pvt2 = "10.0.3.0/24"
+}
