@@ -28,3 +28,8 @@ variable "p_availability" {
 variable "p_ins_name" {
   type = string
 }
+
+variable "p_security_group_name" {
+ type = string
+  
+}
