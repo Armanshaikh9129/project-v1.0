@@ -1,5 +1,5 @@
 resource "aws_security_group" "my_security_group" {
-  name        = "Security_hub"
+  name        = var.m_SG
 
     egress {
     from_port        = var.m_port
