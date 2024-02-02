@@ -1,0 +1,8 @@
+p_ami = "ami-0d63de463e6604d0a"
+p_instance_type = "t2.micro"
+p_port = "8080"
+p_cidr_value =  "0.0.0.0/0"
+P_KEY_NAME  = "module-key"
+P_KEY_PAIR = "/root/.ssh/id_rsa.pub"
+p_availability = "ap-south-1a"
+p_ins_name = "Arman-module"
